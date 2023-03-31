@@ -64,7 +64,7 @@ export const makeSocket = ({
 	/** send a raw buffer */
 	const sendRawMessage = async(data: Uint8Array | Buffer) => {
 		if(ws.readyState !== ws.OPEN) {
-			throw new Boom('Connection Closed', { statusCode: DisconnectReason.connectionClosed })
+			throw new Boom('[ ⚠ ] La conexión ha fallado.. reconexión automatica exitosa ✔')
 		}
 
 		const bytes = noise.encodeFrame(data)
