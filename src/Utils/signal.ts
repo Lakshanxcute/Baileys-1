@@ -55,6 +55,17 @@ export const xmppSignedPreKey = (key: SignedKeyPair): BinaryNode => (
 )
 
 export const xmppPreKey = (pair: KeyPair, id: number): BinaryNode => (
+  {
+    tag: 'key',
+    attrs: { },
+    content: [
+      { tag: 'id', attrs: { }, content: encodeBigEndian(id, 3) },
+      { tag: 'value', attrs: { }, content: pair?.public } // <- agregar una verificación de nulidad aquí
+    ]
+  }
+)
+
+ /*export const xmppPreKey = (pair: KeyPair, id: number): BinaryNode => (
 	{
 		tag: 'key',
 		attrs: { },
@@ -63,7 +74,7 @@ export const xmppPreKey = (pair: KeyPair, id: number): BinaryNode => (
 			{ tag: 'value', attrs: { }, content: pair.public }
 		]
 	}
-)
+)*/
 
 export const parseAndInjectE2ESessions = async(
 	node: BinaryNode,
