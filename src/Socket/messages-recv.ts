@@ -108,9 +108,7 @@ export const makeMessagesRecvSocket = (config: SocketConfig) => {
 		retryCount += 1
 		msgRetryCache.set(msgId, retryCount)
 
-		const { account, signedPreKey, signedIdentityKey } = authState.creds;
-                const identityKey = signedIdentityKey ? signedIdentityKey : undefined;
-
+		const { account, signedPreKey, signedIdentityKey: identityKey } = authState.creds;
 
 		const deviceIdentity = encodeSignedDeviceIdentity(account!, true)
 		await authState.keys.transaction(
