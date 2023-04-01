@@ -24,7 +24,8 @@ class GroupSessionBuilder {
     const senderKeyRecord = await this.senderKeyStore.loadSenderKey(senderKeyName);
     //console.log('GroupSessionBuilder create session', senderKeyName, senderKeyRecord);
 
-    if (senderKeyRecord.isEmpty()) {
+    if (senderKeyRecord && senderKeyRecord.isEmpty()) {
+    //if (senderKeyRecord.isEmpty()) {
       const keyId = keyhelper.generateSenderKeyId();
       const senderKey = keyhelper.generateSenderKey();
       const signingKey = keyhelper.generateSenderSigningKey();
